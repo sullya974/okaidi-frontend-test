@@ -1,0 +1,139 @@
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 15px;
+  color: #060c2f;
+  padding: 0;
+  margin: 0;
+}
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer > div > button:nth-child(1),
+footer > div > button:nth-child(2),
+footer > div > button:nth-child(3) {
+  display: none;
+}
+#resume-container {
+  margin-left: 50px;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: start;
+  padding: 10px;
+}
+#resume > div {
+  border-bottom: 1px solid lightsteelblue;
+  margin-bottom: 25px;
+}
+#resume > div > h3 {
+  font-size: 1.15rem;
+  font-weight: 200;
+  color: #2c2f31;
+  margin-bottom: 2px;
+}
+
+#resume > div > span {
+  line-height: 1.45rem;
+  font-size: 16px;
+  color: #525c65;
+  padding-left: 10px;;
+}
+
+#resume > div > span.answer_ok {
+  color: #2eb689;
+}
+
+#resume > div > span.answer_ko {
+  color: #d8465e;
+}
+
+#home button {
+  align-items: center;
+}
+#home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#info {
+  color: #fff;
+  background-color: #509061;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+#info h3 {
+  align-self: flex-end;
+  padding-right: 10px;
+}
+
+#timer {
+  font-size: 90px;
+  min-height: 100px;
+}
+
+button {
+  background-color: #fff;
+  border: 1px solid #9aac5d;
+  color: #8c9b5a;
+  border-radius: 3px;
+  padding: 15px;
+  cursor: pointer;
+}
+#btn-start {
+  background-color: #fff;
+  border: 1px solid green;
+  color: green;
+}
+
+#btn-terminer {
+  background-color: red;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 3px;
+  width: 120px;
+}
+#question {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 80%;
+  min-height: 300px;
+  border-radius: 10px;
+}
+#question ul {
+  list-style: none;
+}
+#question ul label {
+  cursor: pointer;
+  line-height: 1.65rem;
+  font-size: 16px;
+  color: #525c65;
+}
+#question ul input[type="radio"] {
+  height: 1.5rem;
+  position: relative;
+  width: 2.5rem;
+  cursor: pointer;
+}
+#question h2 {
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: #9faa9f;
+}
+#question h3 {
+  font-size: 1.75rem;
+  line-height: 36px;
+  font-weight: 300;
+  color: #2c2f31;
+}

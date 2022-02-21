@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quizzz</title>
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-    <script src="script.js"></script>
+  <body>
+    <div id="home">
+      <h1>Bienvenue au Quizz !</h1>  
+      <button id="btn-start">
+        Démarrer une partie
+      </button>
+    </div>
+    <div id="resume-container">
+      <button id="btn-goto-home">Accueil</button>
+      <h2>Résumé</h2>  
+      <div id="resume"></div>
+    </div>
+    <header>
+      <div id="info">
+        <h3>Quizz</h3>
+        <div id="timer"></div>
+        <button id="btn-terminer">Terminer le Quizz</button>
+      </div>
+    </header>
+    <section>
+      <div id="question"><h1>Chargement en cours...</h1></div>
+        <footer>
+          <div>
+            <button id="btn-previous"><< Précédent</button>
+            <button id="btn-display-answer">Voir réponse</button>
+            <button id="btn-submit">Valider</button>
+            <button id="btn-next">Suivant >></button>
+        </div>
+      </footer>
+    </section>
+
 </body>
-
+    <script src="script.js"></script>
+      <script>
+        //Initialise le Quizz
+        QuizzGame().init();
+      </script>
+  </body>
 </html>
