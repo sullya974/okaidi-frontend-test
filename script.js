@@ -120,14 +120,14 @@ const QuizzGame = () => {
    * @param {*} questionId
    * @param {*} answerIndex
    */
-  self.handleSelectAnswer = (questionId, answerIndex) => {
-    console.log(questionId + " - " + answerIndex);
+  self.handleSelectAnswer = (questionId, answerId) => {
+    console.log(questionId + " - " + answerId);
     // Récupère la question concernée
     const question = contextQuizz.questions.find((q) => q.id === questionId);
 
     // Indique que la réponse concernée a été sélectionnée
     question.answers.map(
-      (answer, idx) => (answer.selected = answerIndex == idx ? true : false)
+      (answer) => (answer.selected = answer.id == answerId ? true : false)
     );
 
     console.log(contextQuizz.questions);
@@ -162,17 +162,17 @@ const QuizzGame = () => {
   self.getAnswersForDisplay = (question) => {
     console.log(">>> question.id");
     console.log(question.id);
-    const result = question.answers.map((answer, idx) => {
+    const result = question.answers.sort((a, b) => a.id > b.id ? 1 : -1).map((answer) => {
       const correct = answer.isCorrect == true ? "correct" : "";
       return `<li id="${correct}">
                         <input
                         ${correct}
                             type="radio"
-                            id="${idx}"
+                            id="${answer.id}"
                             name="answer${question.id}"
-                            value="${idx}"
-                            onClick="javascript:handleSelectAnswer(${question.id}, ${idx})" />
-                            <label for="${idx}">${answer.answer}</label>
+                            value="${answer.id}"
+                            onClick="javascript:handleSelectAnswer(${question.id}, ${answer.id})" />
+                            <label for="${answer.id}">${answer.answer}</label>
                         </li>`;
     });
     return result.join("");
@@ -204,6 +204,7 @@ const QuizzGame = () => {
       isCorrect: true,
       selected: false,
     });
+    answers.map((a, idx) => (a.id = idx+1));
     return answers;
   };
 
@@ -308,6 +309,7 @@ const QuizzGame = () => {
     infoElt.style.display = "flex";
     footerElt.style.display = "flex";
     questionElt.style.display = "flex";
+    btnNextElt.style.display = "flex";
     homeElt.style.display = "none";
 
     getQuestionsFromAPI()
