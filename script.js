@@ -121,6 +121,7 @@ const QuizzGame = () => {
    * @param {*} answerIndex
    */
   self.handleSelectAnswer = (questionId, answerIndex) => {
+    console.log(questionId + " - " + answerIndex);
     // Récupère la question concernée
     const question = contextQuizz.questions.find((q) => q.id === questionId);
 
@@ -128,6 +129,8 @@ const QuizzGame = () => {
     question.answers.map(
       (answer, idx) => (answer.selected = answerIndex == idx ? true : false)
     );
+
+    console.log(contextQuizz.questions);
   };
 
   /**
@@ -157,6 +160,8 @@ const QuizzGame = () => {
    * @returns
    */
   self.getAnswersForDisplay = (question) => {
+    console.log(">>> question.id");
+    console.log(question.id);
     const result = question.answers.map((answer, idx) => {
       const correct = answer.isCorrect == true ? "correct" : "";
       return `<li id="${correct}">
