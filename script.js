@@ -116,24 +116,6 @@ const QuizzGame = () => {
   };
 
   /**
-   * Gère la sélection d'une réponse
-   * @param {*} questionId
-   * @param {*} answerIndex
-   */
-  self.handleSelectAnswer = (questionId, answerId) => {
-    console.log(questionId + " - " + answerId);
-    // Récupère la question concernée
-    const question = contextQuizz.questions.find((q) => q.id === questionId);
-
-    // Indique que la réponse concernée a été sélectionnée
-    question.answers.map(
-      (answer) => (answer.selected = answer.id == answerId ? true : false)
-    );
-
-    console.log(contextQuizz.questions);
-  };
-
-  /**
    * Affiche une question
    * @param {*} question La question à afficher
    * @returns
@@ -162,9 +144,11 @@ const QuizzGame = () => {
   self.getAnswersForDisplay = (question) => {
     console.log(">>> question.id");
     console.log(question.id);
-    const result = question.answers.sort((a, b) => a.id > b.id ? 1 : -1).map((answer) => {
-      const correct = answer.isCorrect == true ? "correct" : "";
-      return `<li id="${correct}">
+    const result = question.answers
+      .sort((a, b) => (a.id > b.id ? 1 : -1))
+      .map((answer) => {
+        const correct = answer.isCorrect == true ? "correct" : "";
+        return `<li id="${correct}">
                         <input
                         ${correct}
                             type="radio"
@@ -174,12 +158,12 @@ const QuizzGame = () => {
                             onClick="javascript:handleSelectAnswer(${question.id}, ${answer.id})" />
                             <label for="${answer.id}">${answer.answer}</label>
                         </li>`;
-    });
+      });
     return result.join("");
   };
 
   /**
-   *
+   * Merge les réponses en un seul objet
    * @param {Méthode} question Merge les réponses correctes et incorrectes dans la propriété "answers"
    */
   self.mergeAllAnwsers = (question) => {
@@ -204,7 +188,7 @@ const QuizzGame = () => {
       isCorrect: true,
       selected: false,
     });
-    answers.map((a, idx) => (a.id = idx+1));
+    answers.map((a, idx) => (a.id = idx + 1));
     return answers;
   };
 
@@ -273,7 +257,8 @@ const QuizzGame = () => {
     );
 
     setContext(actions.SET_CURRENT_QUESTION, {
-      question: { ...question, answers: mergeAllAnwsers(question) },
+      //question: { ...question, answers: mergeAllAnwsers(question) },
+      question: { ...question },
     });
     displayQuestion(contextQuizz.currentQuestion);
   };
@@ -282,6 +267,9 @@ const QuizzGame = () => {
    * Affiche le résumé du quizz
    */
   self.displayResume = () => {
+    console.log(">>> self.displayResume");
+    console.log(contextQuizz.questions);
+
     const result = contextQuizz.questions.map((question) => {
       var selectedAnswer = question.answers.find((a) => a.selected == true);
       var correctAnswer = question.answers.find((a) => a.isCorrect == true);
@@ -323,7 +311,25 @@ const QuizzGame = () => {
   };
 
   /**
-   *
+   * Gère la sélection d'une réponse
+   * @param {*} questionId
+   * @param {*} answerIndex
+   */
+  self.handleSelectAnswer = (questionId, answerId) => {
+    console.log(questionId + " - " + answerId);
+    // Récupère la question concernée
+    const question = contextQuizz.questions.find((q) => q.id === questionId);
+
+    // Indique que la réponse concernée a été sélectionnée
+    question.answers.map(
+      (answer) => (answer.selected = answer.id == answerId ? true : false)
+    );
+
+    console.log(contextQuizz.questions);
+  };
+
+  /**
+   * Démarre le Quizz
    */
   self.handleStartQuizzEvent = () => {
     // Démarre le jeu
